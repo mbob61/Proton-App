@@ -1,6 +1,7 @@
 package com.example.todoapp.presentation.list
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -16,6 +17,7 @@ import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.*
 import androidx.compose.material3.SnackbarResult
+import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -317,7 +319,9 @@ private fun NoteCard(
             .heightIn(min = 120.dp)
             .combinedClickable(
                 onClick = onNoteClick,
-                onLongClick = onNoteLongPress
+                onLongClick = onNoteLongPress,
+                indication = rememberRipple(),
+                interactionSource = remember { MutableInteractionSource() }
             ),
         colors = CardDefaults.cardColors(
             containerColor = when {
